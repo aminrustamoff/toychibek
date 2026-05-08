@@ -12,5 +12,7 @@ def contacts(request):
 def explore_projects(request):
     return render(request, 'projects/explore_projects.html')
 
+
+
 def project_detail(request):
     return render(request, 'projects/project_detail.html')

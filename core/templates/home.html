@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home - TXT Group{% endblock %}
+{% block title %}Bosh sahifa{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+<link rel="stylesheet" href="{% static 'styles/home.css' %}">
 {% endblock %}
 
 {% block content %}
 
 <section id="welcome" class="hero-section">
+    <div class="hero-slider">
+        <div class="hero-slide active" style="background-image: url('{% static "images/hero1.jpg" %}');"></div>
+        <div class="hero-slide" style="background-image: url('{% static "images/hero2.webp" %}');"></div> 
+        <div class="hero-slide" style="background-image: url('{% static "images/hero3.jpg" %}');"></div>
+        <div class="hero-slide" style="background-image: url('{% static "images/hero4.jpeg" %}');"></div>
+    </div>
+
+    <div class="hero-overlay"></div>
+
     <div class="hero-content">
         <h1>Saytimizga xush kelibsiz</h1>
         <p>
@@ -127,4 +136,9 @@
     </form>
 </section>
 
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'scripts/home.js' %}"></script>
 {% endblock %}
