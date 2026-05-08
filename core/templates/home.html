@@ -1,11 +1,130 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home - TXT Group{% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<h1>Welcome to TXT Group</h1>
-<p>This is the home page of the TXT Group website.</p>
-<a href="{% url 'projects_list' %}">Learn more about us</a>
+<section id="welcome" class="hero-section">
+    <div class="hero-content">
+        <h1>Saytimizga xush kelibsiz</h1>
+        <p>
+            Biz sizga zamonaviy uy-joylar, binolar va investitsion loyihalar haqida
+            ishonchli ma’lumot taqdim etamiz.
+        </p>
+        <a href="#projects" class="main-btn">Loyihalarni ko‘rish</a>
+    </div>
+</section>
+
+<section id="about" class="section">
+    <h2>Biz haqimizda</h2>
+
+    <div class="about-box">
+        <p>
+            Kompaniyamiz mijozlarga qulay, zamonaviy va ishonchli ko‘chmas mulk
+            loyihalarini taqdim etish maqsadida faoliyat yuritadi.
+        </p>
+
+        <p>
+            Bizning asosiy maqsadimiz — mijozlar uchun sifatli xizmat ko‘rsatish,
+            mavjud obyektlar haqida aniq ma’lumot berish va xarid jarayonini
+            qulaylashtirish.
+        </p>
+
+        <p class="status">
+            Kompaniya holati: Faol
+        </p>
+
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Telegram</a>
+            <a href="#">YouTube</a>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="section dark-section">
+    <h2>Ko‘chmas mulklar va loyihalar</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Turar joy majmuasi</h3>
+            <p>
+                Zamonaviy dizaynga ega, qulay joylashuvdagi yangi turar joy binolari.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Biznes binolari</h3>
+            <p>
+                Ofis, savdo va xizmat ko‘rsatish faoliyati uchun qulay binolar.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Investitsion loyihalar</h3>
+            <p>
+                Kelajakda daromad keltirishi mumkin bo‘lgan istiqbolli loyihalar.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="statistics" class="section">
+    <h2>Statistika</h2>
+
+    <div class="stats">
+        <div class="stat-box">
+            <h3>120+</h3>
+            <p>Mavjud ko‘chmas mulklar</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>35+</h3>
+            <p>Binolar</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>280+</h3>
+            <p>Amalga oshirilgan xaridlar</p>
+        </div>
+    </div>
+</section>
+
+<section id="comments" class="section dark-section">
+    <h2>Mijozlar izohlari</h2>
+
+    <div class="comments-list">
+        {% for comment in comments %}
+            <div class="comment-card">
+                <h3>{{ comment.name }}</h3>
+                <p>{{ comment.message }}</p>
+                <span>{{ comment.created_at }}</span>
+            </div>
+        {% empty %}
+            <p class="empty-text">Hozircha izohlar mavjud emas.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="write-comment" class="section">
+    <h2>Izoh yozish</h2>
+
+    <form method="POST" class="comment-form">
+        {% csrf_token %}
+
+        <label for="name">Ismingiz</label>
+        <input type="text" id="name" name="name" placeholder="Ismingizni kiriting" required>
+
+        <label for="comment">Izohingiz</label>
+        <textarea id="comment" name="comment" rows="5" placeholder="Izohingizni yozing" required></textarea>
+
+        <button type="submit">Yuborish</button>
+    </form>
+</section>
 
 {% endblock %}

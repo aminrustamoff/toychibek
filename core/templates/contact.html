@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bog‘lanish{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/contacts.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<section class="contact-hero">
+    <div class="contact-hero-content">
+        <h1>Biz bilan bog‘laning</h1>
+        <p>
+            Savollaringiz, takliflaringiz yoki hamkorlik bo‘yicha murojaatlaringiz bo‘lsa,
+            biz bilan qulay usulda bog‘lanishingiz mumkin.
+        </p>
+    </div>
+</section>
+
+<section class="contact-section">
+    <h2>Aloqa ma’lumotlari</h2>
+
+    <div class="contact-cards">
+
+        <div class="contact-card">
+            <h3>Email</h3>
+            <p>Savollaringiz uchun bizga email yuboring.</p>
+            <a href="mailto:info@txtgroup-demo.uz">info@txtgroup-demo.uz</a>
+        </div>
+
+        <div class="contact-card">
+            <h3>Telefon</h3>
+            <p>Biz bilan telefon orqali bog‘lanishingiz mumkin.</p>
+            <a href="tel:+9989123456789">+998 91 234 56 78</a>
+        </div>
+
+        <div class="contact-card">
+            <h3>Ish vaqti</h3>
+            <p>Dushanbadan shanbagacha</p>
+            <span>09:00 - 18:00</span>
+        </div>
+
+    </div>
+</section>
+
+<section class="contact-dark-section">
+    <div class="contact-container">
+        <h2>Ijtimoiy tarmoqlar</h2>
+
+        <p>
+            Yangiliklar, loyihalar va e’lonlardan xabardor bo‘lish uchun bizni
+            ijtimoiy tarmoqlarda kuzatib boring.
+        </p>
+
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Telegram</a>
+            <a href="#">YouTube</a>
+        </div>
+    </div>
+</section>
+
+<section class="message-section">
+    <h2>Xabar yuborish</h2>
+
+    <form method="POST" class="message-form">
+        {% csrf_token %}
+
+        <label for="name">Ismingiz</label>
+        <input type="text" id="name" name="name" placeholder="Ismingizni kiriting" required>
+
+        <label for="email">Email manzilingiz</label>
+        <input type="email" id="email" name="email" placeholder="Email manzilingizni kiriting" required>
+
+        <label for="message">Xabaringiz</label>
+        <textarea id="message" name="message" rows="5" placeholder="Xabaringizni yozing" required></textarea>
+
+        <button type="submit">Xabar yuborish</button>
+    </form>
+</section>
+
+{% endblock %}

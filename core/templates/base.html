@@ -1,12 +1,42 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My App{% endblock %}</title>
+    <title>{% block title %}Bosh sahifa{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+    {% block styles %}
+    {% endblock %}
 </head>
 <body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#welcome" class="logo">TXT GROUP</a>
+
+            <div class="nav-links">
+                <a href="{% url 'home' %}">Bosh sahifa</a>
+                {% if request.resolver_match.url_name == 'home' %}
+                <a href="#about">Biz haqimizda</a>
+                <a href="#projects">Loyihalar</a>
+                <a href="#statistics">Statistika</a>
+                <a href="#comments">Izohlar</a>
+                <a href="#write-comment">Izoh yozish</a>
+                {% endif %}
+                <a href="{% url 'contacts' %}">Bog'lanish</a>
+                <a href="{% url 'explore_projects' %}">Loyihalarni ko‘rish</a>
+            </div>
+        </div>
+    </nav>
+
     {% block content %}
     {% endblock %}
+
+    <footer class="footer">
+        <p>&copy; 2026 TXT GROUP. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
 </body>
 </html>
