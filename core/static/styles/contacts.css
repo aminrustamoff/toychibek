@@ -79,7 +79,7 @@
 }
 
 .contact-dark-section {
-    background-color: var(--black);
+    background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 50%, rgb(8, 88, 1) 100%);
     color: var(--white);
     padding: 80px 30px;
     text-align: center;

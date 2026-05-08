@@ -1,10 +1,10 @@
 :root {
     --sky-blue: #38BDF8;
-    --coral: #FF4F5E;
+    --coral: #09a307;
     --light-gray: #F3F4F6;
     --black: #0F172A;
     --white: #FFFFFF;
-    --dark-gray: #1E293B;
+    --dark-gray: #0c131d;
     --text-gray: #64748B;
 }
 
@@ -28,7 +28,7 @@ body {
 
 .navbar {
     width: 100%;
-    background-color: var(--black);
+    background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 50%, rgb(4, 43, 0) 100%);
     position: fixed;
     top: 0;
     left: 0;
@@ -74,7 +74,7 @@ body {
 }
 
 .footer {
-    background-color: var(--black);
+    background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 50%, rgb(4, 43, 0) 100%);
     color: var(--white);
     text-align: center;
     padding: 25px;
