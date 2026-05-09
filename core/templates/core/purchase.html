@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Sotib olish — {{ project.name }}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'core/styles/purchase.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="contact-section">
+    <div class="contact-container">
+        <div class="contact-hero-content">
+            <h1>Sotib olish uchun ariza</h1>
+            <p>{{ project.name }} loyihasi uchun telefon raqamingizni qoldiring.</p>
+        </div>
+
+        {% if submitted %}
+            <div class="contact-card" style="border: 1px solid #4caf50; background: #38de46; color: #deb601; margin-bottom: 20px;">
+                <p>Arizangiz qabul qilindi. Tez orada siz bilan bog‘lanamiz.</p>
+            </div>
+        {% endif %}
+
+        <div class="contact-cards">
+            <div class="contact-card">
+                <h3>Loyiha</h3>
+                <p>{{ project.name }}</p>
+            </div>
+            <div class="contact-card">
+                <h3>Joylashuv</h3>
+                <p>{{ project.location }}</p>
+            </div>
+            <div class="contact-card">
+                <h3>Narx</h3>
+                <p>${{ project.price }}</p>
+            </div>
+        </div>
+
+        <form method="post" class="contact-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+            </div>
+
+            <div class="form-group">
+                {{ form.phone.label_tag }}
+                {{ form.phone }}
+            </div>
+
+            <button type="submit" class="contact-btn">Ariza yuborish</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'core/js/purchase.js' %}"></script>
+{% endblock %}

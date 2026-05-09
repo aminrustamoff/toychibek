@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CommentForm, ContactForm
+from django.urls import reverse
+from .forms import CommentForm, ContactForm, LeadForm
 from .models import Comments, Contact, Project, Lead
 
 # Create your views here.
@@ -39,6 +40,28 @@ def explore_projects(request):
     projects = Project.objects.all()
     return render(request, 'core/projects/explore_projects.html', {'projects': projects})
 
+
+def purchase(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    submitted = request.GET.get('submitted') == '1'
+
+    if request.method == 'POST':
+        form = LeadForm(request.POST)
+        if form.is_valid():
+            lead = form.save(commit=False)
+            lead.project = project
+            lead.save()
+            return redirect(f"{reverse('purchase', kwargs={'project_id': project.id})}?submitted=1")
+    else:
+        form = LeadForm()
+
+    context = {
+        'project': project,
+        'form': form,
+        'submitted': submitted,
+    }
+
+    return render(request, 'core/purchase.html', context)
 
 
 def project_detail(request, pk):

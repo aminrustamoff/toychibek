@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'management/base_management.html' %}
 {% load static %}
 
 {% block title %}<title>Kirish | AdminPanel</title>{% endblock %}
@@ -6,7 +6,7 @@
 {% block styles %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{% static 'styles/login.css' %}">
+<link rel="stylesheet" href="{% static 'management/styles/login.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -82,5 +82,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'scripts/login.js' %}"></script>
+<script src="{% static 'management/scripts/login.js' %}"></script>
 {% endblock %}

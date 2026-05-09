@@ -134,6 +134,13 @@
 .project-actions {
     display: flex;
     gap: 20px;
+    justify-content: center;
+}
+
+.project-actions a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .purchase-btn,

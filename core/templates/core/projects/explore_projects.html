@@ -45,10 +45,10 @@
                         Batafsil
                     </a>
 
-                    <button class="purchase-btn"
-                            data-project="{{ project.name }}">
+                    <a href="{% url 'purchase' project.id %}"
+                       class="purchase-btn">
                         Sotib olish
-                    </button>
+                    </a>
 
                 </div>
 

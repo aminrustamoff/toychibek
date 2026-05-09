@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comments, Contact
+from .models import Comments, Contact, Lead
 
 
 class CommentForm(forms.ModelForm):
@@ -60,4 +60,30 @@ class ContactForm(forms.ModelForm):
             'name': 'Ismingiz',
             'email': 'Email manzilingiz',
             'message': 'Xabaringiz',
+        }
+
+
+class LeadForm(forms.ModelForm):
+    class Meta:
+        model = Lead
+        fields = ['name', 'phone']
+
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'id': 'name',
+                'class': 'form-control',
+                'placeholder': 'Ismingizni kiriting',
+                'required': True
+            }),
+            'phone': forms.TextInput(attrs={
+                'id': 'phone',
+                'class': 'form-control',
+                'placeholder': 'Telefon raqamingizni kiriting',
+                'required': True
+            }),
+        }
+
+        labels = {
+            'name': 'Ismingiz',
+            'phone': 'Telefon',
         }

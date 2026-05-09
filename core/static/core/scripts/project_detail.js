@@ -1,14 +1,14 @@
 const purchaseBtn = document.querySelector('.purchase-btn');
 const contactBtn = document.querySelector('.contact-btn');
 
-purchaseBtn.addEventListener('click', () => {
+if (purchaseBtn && purchaseBtn.tagName.toLowerCase() === 'button') {
+    purchaseBtn.addEventListener('click', () => {
+        alert('Purchase request sent!');
+    });
+}
 
-    alert('Purchase request sent!');
-
-});
-
-contactBtn.addEventListener('click', () => {
-
-    alert('Manager will contact you soon!');
-
-});
+if (contactBtn) {
+    contactBtn.addEventListener('click', () => {
+        window.location.href = '/contacts/';
+    });
+}
