@@ -1,15 +1,68 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Projects{% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/explore_project.css' %}">
+{% endblock %}
+
 {% block content %}
-    <h1>Projects</h1>
-    <ul>
+
+<div class="projects-container">
+
+    <div class="projects-header">
+        <h1>Our Projects</h1>
+        <p>Find your dream property</p>
+    </div>
+
+    <div class="projects-grid">
+
         {% for project in projects %}
-            <li>
-                <a href="{% url 'project_detail' project.id %}">{{ project.name }}</a>
-                <p>{{ project.description }}</p>
-            </li>
+        <div class="project-card">
+
+            <div class="project-image">
+                <img src="{{ project.image.url }}" alt="{{ project.name }}">
+            </div>
+
+            <div class="project-content">
+
+                <div class="project-top">
+                    <h2>{{ project.name }}</h2>
+                    <span class="project-location">
+                        {{ project.location }}
+                    </span>
+                </div>
+
+                <div class="project-price">
+                    {{ project.price }}
+                </div>
+
+                <div class="project-buttons">
+
+                    <a href="{% url 'project_detail' project.id %}"
+                       class="details-btn">
+                        View Details
+                    </a>
+
+                    <button class="purchase-btn"
+                            data-project="{{ project.name }}">
+                        Purchase
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
         {% endfor %}
-    </ul>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'scripts/explore_projects.js' %}"></script>
 {% endblock %}

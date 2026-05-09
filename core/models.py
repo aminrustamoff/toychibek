@@ -14,7 +14,7 @@ class Contact(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 class Project(models.Model):
-    image = models.ImageField(upload_to='static/images/')
+    image = models.ImageField(upload_to='project_images/')
     name = models.CharField(max_length=100)
     description = models.TextField()
     rooms = models.IntegerField()

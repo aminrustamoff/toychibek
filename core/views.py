@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CommentForm, ContactForm
 from .models import Comments, Contact, Project, Lead
 
@@ -35,9 +35,12 @@ def contacts(request):
     return render(request, 'contact.html', {'form': form})
 
 def explore_projects(request):
-    return render(request, 'projects/explore_projects.html')
+
+    projects = Project.objects.all()
+    return render(request, 'projects/explore_projects.html', {'projects': projects})
 
 
 
-def project_detail(request):
-    return render(request, 'projects/project_detail.html')
+def project_detail(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    return render(request, 'projects/project_detail.html', {'project': project})
