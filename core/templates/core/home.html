@@ -1,20 +1,20 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 {% load static %}
 
 {% block title %}Bosh sahifa{% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'styles/home.css' %}">
+<link rel="stylesheet" href="{% static 'core/styles/home.css' %}">
 {% endblock %}
 
 {% block content %}
 
 <section id="welcome" class="hero-section">
     <div class="hero-slider">
-        <div class="hero-slide active" style="background-image: url('{% static "images/hero1.jpg" %}');"></div>
-        <div class="hero-slide" style="background-image: url('{% static "images/hero2.webp" %}');"></div>
-        <div class="hero-slide" style="background-image: url('{% static "images/hero3.jpg" %}');"></div>
-        <div class="hero-slide" style="background-image: url('{% static "images/hero4.jpeg" %}');"></div>
+        <div class="hero-slide active" style="background-image: url('{% static "core/images/hero1.jpg" %}');"></div>
+        <div class="hero-slide" style="background-image: url('{% static "core/images/hero2.webp" %}');"></div>
+        <div class="hero-slide" style="background-image: url('{% static "core/images/hero3.jpg" %}');"></div>
+        <div class="hero-slide" style="background-image: url('{% static "core/images/hero4.jpeg" %}');"></div>
     </div>
 
     <div class="hero-overlay"></div>
@@ -50,15 +50,15 @@
 
         <div class="social-links">
             <a href="#">
-                <img src="{% static 'icons/instagram.svg' %}" alt="Instagram">
+                <img src="{% static 'core/icons/instagram.svg' %}" alt="Instagram">
                 <span>Instagram</span>
             </a>
             <a href="#">
-                <img src="{% static 'icons/telegram.svg' %}" alt="Telegram">
+                <img src="{% static 'core/icons/telegram.svg' %}" alt="Telegram">
                 <span>Telegram</span>
             </a>
             <a href="#">
-                <img src="{% static 'icons/youtube.svg' %}" alt="YouTube">
+                <img src="{% static 'core/icons/youtube.svg' %}" alt="YouTube">
                 <span>YouTube</span>
             </a>
         </div>
@@ -149,5 +149,5 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'scripts/home.js' %}"></script>
+    <script src="{% static 'core/scripts/home.js' %}"></script>
 {% endblock %}

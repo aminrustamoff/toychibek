@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 {% load static %}
 
 {% block title %}{{ project.name }}{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'styles/project_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'core/styles/project_detail.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -47,22 +47,22 @@
             <div class="project-info-grid">
 
                 <div class="info-card">
-                    <h3>Rooms</h3>
+                    <h3>Xonalar</h3>
                     <p>{{ project.rooms }}</p>
                 </div>
 
                 <div class="info-card">
-                    <h3>Floor</h3>
+                    <h3>Qavat</h3>
                     <p>{{ project.floor }}</p>
                 </div>
 
                 <div class="info-card">
-                    <h3>Available</h3>
+                    <h3>Mavjud</h3>
                     <p>{{ project.available_numbers }}</p>
                 </div>
 
                 <div class="info-card">
-                    <h3>Created</h3>
+                    <h3>Yaratilgan</h3>
                     <p>{{ project.created_at|date:"d M Y" }}</p>
                 </div>
 
@@ -71,11 +71,11 @@
             <div class="project-actions">
 
                 <button class="purchase-btn">
-                    Purchase
+                    Sotib olish
                 </button>
 
                 <button class="contact-btn">
-                    Contact Manager
+                    Menejer bilan bog'lanish
                 </button>
 
             </div>
@@ -89,5 +89,5 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'scripts/explore_projects.js' %}"></script>
+    <script src="{% static 'core/scripts/project_detail.js' %}"></script>
 {% endblock %}

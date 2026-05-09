@@ -1,0 +1,136 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="{% static 'management/styles/base.css' %}">
+  
+  {% block styles %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'management/styles/management_base.css' %}">
+  {% block page_styles %}{% endblock %}
+  {% endblock %}
+  {% block title %}<title>Panel</title>{% endblock %}
+</head>
+<body> 
+
+{% block content %}
+<div class="mgmt-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-mark">
+        <span class="logo-icon">⬡</span>
+      </div>
+      <div class="logo-text">
+        <span class="logo-title">AdminPanel</span>
+        <span class="logo-sub">Boshqaruv tizimi</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-label">Asosiy</span>
+      <a href="{% url 'management:dashboard' %}" class="nav-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+
+      <span class="nav-label">Boshqaruv</span>
+      <a href="{% url 'management:projects' %}" class="nav-item {% if 'project' in request.resolver_match.url_name %}active{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>Loyihalar</span>
+      </a>
+
+      <a href="{% url 'management:messages' %}" class="nav-item {% if request.resolver_match.url_name == 'messages' %}active{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <span>Xabarlar</span>
+        {% if unread_messages %}
+          <span class="badge">{{ unread_messages }}</span>
+        {% endif %}
+      </a>
+
+      <a href="{% url 'management:comments' %}" class="nav-item {% if request.resolver_match.url_name == 'comments' %}active{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <span>Izohlar</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="user-avatar">{{ request.user.username|slice:":1"|upper }}</div>
+        <div class="user-details">
+          <span class="user-name">{{ request.user.username }}</span>
+          <span class="user-role">Admin</span>
+        </div>
+      </div>
+      <a href="{% url 'management:logout' %}" class="logout-btn" title="Chiqish">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <header class="top-bar">
+      <button class="menu-toggle" id="menuToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="top-bar-title">{% block page_title_bar %}{% block page_title %}Boshqaruv{% endblock %}{% endblock %}</div>
+      <div class="top-bar-right">
+        <span class="top-date" id="topDate"></span>
+      </div>
+    </header>
+
+    {% if messages %}
+    <div class="alerts-container">
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        <span>{{ message }}</span>
+        <button class="alert-close" onclick="this.parentElement.remove()">✕</button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <main class="page-content">
+      {% block page_content %}{% endblock %}
+    </main>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'management/scripts/management_base.js' %}"></script>
+{% block page_js %}{% endblock %}
+{% endblock %}
+
+
+</body>
+</html>

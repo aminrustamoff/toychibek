@@ -1,0 +1,13 @@
+/* ============================================
+   Comments
+   ============================================ */
+
+.comments-page {}
+
+.msg-preview {
+  color: var(--text-muted);
+  font-size: 13px;
+  max-width: 420px;
+}
+
+.data-table .icon-btn { display: inline-flex; }

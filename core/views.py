@@ -21,7 +21,7 @@ def home(request):
         'form': form
     }
 
-    return render(request, 'home.html', context)
+    return render(request, 'core/home.html', context)
 
 def contacts(request):
     if request.method == 'POST':
@@ -32,15 +32,15 @@ def contacts(request):
     else:
         form = ContactForm()
 
-    return render(request, 'contact.html', {'form': form})
+    return render(request, 'core/contact.html', {'form': form})
 
 def explore_projects(request):
 
     projects = Project.objects.all()
-    return render(request, 'projects/explore_projects.html', {'projects': projects})
+    return render(request, 'core/projects/explore_projects.html', {'projects': projects})
 
 
 
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
-    return render(request, 'projects/project_detail.html', {'project': project})
+    return render(request, 'core/projects/project_detail.html', {'project': project})

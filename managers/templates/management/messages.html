@@ -1,0 +1,60 @@
+{% extends 'management/base_management.html' %}
+{% load static %}
+
+{% block page_title %}Xabarlar{% endblock %}
+
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'management/styles/messages.css' %}">
+{% endblock %}
+
+{% block page_content %}
+<div class="messages-page">
+
+  <div class="page-toolbar">
+    <div class="toolbar-left">
+      <h2 class="page-heading">Murojaatlar</h2>
+      <span class="count-badge">{{ contacts|length }} ta</span>
+    </div>
+  </div>
+
+  {% if contacts %}
+  <div class="messages-list">
+    {% for contact in contacts %}
+    <div class="message-card {% if not contact.is_read %}unread{% endif %}">
+      <div class="msg-avatar">{{ contact.name|slice:":1"|upper }}</div>
+      <div class="msg-body">
+        <div class="msg-header">
+          <div class="msg-meta">
+            <span class="msg-name">{{ contact.name }}</span>
+            <a href="mailto:{{ contact.email }}" class="msg-email">{{ contact.email }}</a>
+          </div>
+          <div class="msg-right">
+            <span class="msg-date">{{ contact.created_at|date:"d.m.Y · H:i" }}</span>
+            {% if not contact.is_read %}
+              <span class="new-badge">Yangi</span>
+            {% endif %}
+          </div>
+        </div>
+        <p class="msg-text">{{ contact.message }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-page">
+    <div class="empty-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="60" height="60">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+    </div>
+    <h3>Xabarlar yo'q</h3>
+    <p>Hozircha hech qanday murojaat kelib tushmagan.</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block page_js %}
+<script src="{% static 'management/scripts/messages.js' %}"></script>
+{% endblock %}

@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %}Projects{% endblock %}
+{% block title %}Loyihlar{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'styles/explore_project.css' %}">
+    <link rel="stylesheet" href="{% static 'core/styles/explore_project.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -12,8 +12,8 @@
 <div class="projects-container">
 
     <div class="projects-header">
-        <h1>Our Projects</h1>
-        <p>Find your dream property</p>
+        <h1>Bizning loyihalarimiz</h1>
+        <p>Tasdiqlangan loyihalar</p>
     </div>
 
     <div class="projects-grid">
@@ -42,12 +42,12 @@
 
                     <a href="{% url 'project_detail' project.id %}"
                        class="details-btn">
-                        View Details
+                        Batafsil
                     </a>
 
                     <button class="purchase-btn"
                             data-project="{{ project.name }}">
-                        Purchase
+                        Sotib olish
                     </button>
 
                 </div>
@@ -64,5 +64,5 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'scripts/explore_projects.js' %}"></script>
+    <script src="{% static 'core/scripts/explore_projects.js' %}"></script>
 {% endblock %}

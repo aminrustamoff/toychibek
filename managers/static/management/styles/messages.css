@@ -1,0 +1,96 @@
+/* ============================================
+   Messages
+   ============================================ */
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: var(--shadow-sm);
+  transition: transform .12s, box-shadow .12s;
+  position: relative;
+}
+.message-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.message-card.unread {
+  border-left: 3px solid var(--primary);
+  background: linear-gradient(to right, #f0f6ff, var(--card-bg) 60%);
+}
+
+.msg-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.message-card.unread .msg-avatar {
+  background: var(--primary);
+  color: #fff;
+}
+
+.msg-body { flex: 1; min-width: 0; }
+
+.msg-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.msg-meta { display: flex; flex-direction: column; gap: 2px; }
+.msg-name  { font-size: 14px; font-weight: 600; color: var(--text); }
+.msg-email {
+  font-size: 12px;
+  color: var(--primary);
+}
+.msg-email:hover { text-decoration: underline; }
+
+.msg-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.msg-date {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.new-badge {
+  background: var(--primary);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.msg-text {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 540px) {
+  .message-card { flex-direction: column; gap: 10px; }
+  .msg-header { flex-direction: column; }
+}

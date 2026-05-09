@@ -1,0 +1,134 @@
+{% extends 'management/base_management.html' %}
+{% load static %}
+
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'management/styles/projects.css' %}">
+{% endblock %}
+
+{% block page_content %}
+<div class="form-page">
+
+  <div class="form-header">
+    <a href="{% url 'management:projects' %}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+        <line x1="19" y1="12" x2="5" y2="12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      Orqaga
+    </a>
+    <h2 class="form-title">{{ title }}</h2>
+  </div>
+
+  <div class="form-card">
+    <form method="POST" enctype="multipart/form-data" class="project-form" novalidate>
+      {% csrf_token %}
+
+      <!-- Image upload -->
+      <div class="form-section">
+        <h4 class="form-section-title">Rasm</h4>
+        <div class="image-upload-area" id="imageUploadArea">
+          {% if project.image %}
+            <img src="{{ project.image.url }}" alt="" class="preview-img" id="previewImg">
+            <div class="upload-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              <span>Rasm almashtirish</span>
+            </div>
+          {% else %}
+            <img src="" alt="" class="preview-img" id="previewImg" style="display:none">
+            <div class="upload-placeholder" id="uploadPlaceholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <p>Rasm yuklash uchun bosing</p>
+              <span>JPG, PNG, WEBP — max 5MB</span>
+            </div>
+          {% endif %}
+          {{ form.image }}
+        </div>
+        {% if form.image.errors %}
+          <p class="field-error">{{ form.image.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <!-- Main fields -->
+      <div class="form-section">
+        <h4 class="form-section-title">Asosiy ma'lumotlar</h4>
+        <div class="fields-grid">
+          <div class="field-wrap-full">
+            <label class="field-label">{{ form.name.label }}</label>
+            {{ form.name }}
+            {% if form.name.errors %}<p class="field-error">{{ form.name.errors.0 }}</p>{% endif %}
+          </div>
+
+          <div class="field-wrap-full">
+            <label class="field-label">{{ form.description.label }}</label>
+            {{ form.description }}
+            {% if form.description.errors %}<p class="field-error">{{ form.description.errors.0 }}</p>{% endif %}
+          </div>
+
+          <div class="field-wrap">
+            <label class="field-label">{{ form.location.label }}</label>
+            {{ form.location }}
+            {% if form.location.errors %}<p class="field-error">{{ form.location.errors.0 }}</p>{% endif %}
+          </div>
+
+          <div class="field-wrap">
+            <label class="field-label">{{ form.status.label }}</label>
+            {{ form.status }}
+            {% if form.status.errors %}<p class="field-error">{{ form.status.errors.0 }}</p>{% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Numbers -->
+      <div class="form-section">
+        <h4 class="form-section-title">Parametrlar</h4>
+        <div class="fields-grid fields-4">
+          <div class="field-wrap">
+            <label class="field-label">{{ form.rooms.label }}</label>
+            {{ form.rooms }}
+            {% if form.rooms.errors %}<p class="field-error">{{ form.rooms.errors.0 }}</p>{% endif %}
+          </div>
+
+          <div class="field-wrap">
+            <label class="field-label">{{ form.floor.label }}</label>
+            {{ form.floor }}
+            {% if form.floor.errors %}<p class="field-error">{{ form.floor.errors.0 }}</p>{% endif %}
+          </div>
+
+          <div class="field-wrap">
+            <label class="field-label">{{ form.available_numbers.label }}</label>
+            {{ form.available_numbers }}
+            {% if form.available_numbers.errors %}<p class="field-error">{{ form.available_numbers.errors.0 }}</p>{% endif %}
+          </div>
+
+          <div class="field-wrap">
+            <label class="field-label">{{ form.price.label }}</label>
+            {{ form.price }}
+            {% if form.price.errors %}<p class="field-error">{{ form.price.errors.0 }}</p>{% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <a href="{% url 'management:projects' %}" class="btn btn-outline">Bekor qilish</a>
+        <button type="submit" class="btn btn-primary">
+          {% if action == 'edit' %}Saqlash{% else %}Qo'shish{% endif %}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block page_js %}
+<script src="{% static 'management/scripts/projects.js' %}"></script>
+{% endblock %}
