@@ -41,6 +41,6 @@ def explore_projects(request):
 
 
 
-def project_detail(request, project_id):
-    project = get_object_or_404(Project, id=project_id)
+def project_detail(request, pk):
+    project = get_object_or_404(Project, pk=pk)
     return render(request, 'projects/project_detail.html', {'project': project})
